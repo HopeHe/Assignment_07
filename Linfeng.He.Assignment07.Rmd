@@ -9,6 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(stringr)
+library(choroplethr)
 ```
 
 ## Maternal Mortality Data by country 
@@ -75,5 +76,11 @@ write_csv(Countries, path = "mortalityandincome.csv")
 ```
 ### Use the country_choropleth() function in the choroplethr package to make a world map of maternal mortality, using the most recent year for each country in the merged dataset you created. The defaults of the function will be fine; no need to tune up the plot. You can read the help file to see how the data must be formatted; you may need to rename the countries from the dataset that you've created.
 ```{r}
+Countries.2013 <- filter(Countries, year == "2013")
+Countries.2013 <- as.data.frame(Countries.2013)
 
+Countries.2013 %>%
+  dplyr::rename(value = `Births attended by skilled health personnel (%)`) %>%
+  dplyr::rename(region = Country) %>%
+  country_choropleth(num_colors = 9)
 ```
