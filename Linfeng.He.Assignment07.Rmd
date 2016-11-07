@@ -78,6 +78,7 @@ write_csv(Countries, path = "mortalityandincome.csv")
 ```{r}
 Countries.2013 <- filter(Countries, year == "2013")
 Countries.2013 <- as.data.frame(Countries.2013)
+Countries.2013$Country <- tolower(Countries.2013$Country)
 
 Countries.2013 %>%
   dplyr::rename(value = `Births attended by skilled health personnel (%)`) %>%
