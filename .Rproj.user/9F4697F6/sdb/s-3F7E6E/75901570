@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1478491860302.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "75901570",
+    "lastKnownWriteTime" : 5489670667664097024,
+    "last_content_update" : 1478491860302,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D62A1C25",
+        "caption" : "gni",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=gni&cache_key=D62A1C25",
+        "displayedObservations" : "4392",
+        "environment" : "",
+        "object" : "gni",
+        "preview" : "0",
+        "totalObservations" : "4392",
+        "variables" : "3"
+    },
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

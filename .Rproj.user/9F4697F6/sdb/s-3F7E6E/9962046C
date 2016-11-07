@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1478490908908.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9962046C",
+    "lastKnownWriteTime" : 140736711210164,
+    "last_content_update" : 1478490908908,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "F36403B1",
+        "caption" : "mortality",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=mortality&cache_key=F36403B1",
+        "displayedObservations" : "725",
+        "environment" : "",
+        "object" : "mortality",
+        "preview" : "0",
+        "totalObservations" : "725",
+        "variables" : "6"
+    },
+    "relative_order" : 8,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
