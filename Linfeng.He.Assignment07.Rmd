@@ -68,6 +68,12 @@ ggplot(Countries) + geom_point(aes(x = `Gross national income per capital`, y = 
 ```
 
 ### Save a csv file with the merged, cleaned, and tidy data, using a suitable name of your choosing in the data folder.
-
+```{r}
+Countries$`Maternal mortality ratio (per 100 000 live births)` <-
+    as.character(Countries$`Maternal mortality ratio (per 100 000 live births)`)
+write_csv(Countries, path = "mortalityandincome.csv")
+```
 ### Use the country_choropleth() function in the choroplethr package to make a world map of maternal mortality, using the most recent year for each country in the merged dataset you created. The defaults of the function will be fine; no need to tune up the plot. You can read the help file to see how the data must be formatted; you may need to rename the countries from the dataset that you've created.
+```{r}
 
+```
