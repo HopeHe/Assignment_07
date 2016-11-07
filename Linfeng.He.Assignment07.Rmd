@@ -1,0 +1,68 @@
+---
+title: "MSDS597_Assignment07"
+author: "Linfeng He"
+date: "11/6/2016"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(stringr)
+```
+
+## Maternal Mortality Data by country 
+```{r }
+mortality <- read_csv("data.csv")
+mortality$`Maternal mortality ratio (per 100 000 live births)`  <- 
+  mortality$`Maternal mortality ratio (per 100 000 live births)` %>%
+  str_replace_all(., " ", "") %>%
+  str_extract_all(., '\\[[0-9]+\\-[0-9]+\\]')
+  
+mortality$'Maternal mortality ratio lower_bound' <- 
+  str_extract(mortality$`Maternal mortality ratio (per 100 000 live births)`, '[0-9]+') %>%
+  as.numeric()
+
+mortality$'Maternal mortality ratio upper_bound' <- 
+    str_extract(mortality$`Maternal mortality ratio (per 100 000 live births)`, '\\-[0-9]+') %>%
+    str_replace(., "-","") %>%
+    as.numeric()
+
+mortality$Year <-
+    mortality$Year %>%
+    str_replace_all(., '[0-9]+-',"") %>%
+    as.numeric()
+```
+
+## The Gross National Income data 
+```{r}
+gni <- read_csv("GNI per capita.csv")
+colnames(gni) <- gni[1,]
+gni <- subset(gni[2:184,])
+gni <- gather(gni, `2013`:`1990`, key = "year", value = "Gross national income per capital") 
+gni$year <- as.numeric(gni$year)
+
+gni$`Gross national income per capital` <-
+    gni$`Gross national income per capital` %>%
+    str_replace_all(., " ", "") %>%
+    as.numeric()
+```
+
+### Merge the two files by country and year, retaining only rows for which you have per capita income *and* either maternal mortality *or* percentage attended births
+```{r}
+Countries <- inner_join(gni, mortality, c("Country"="Country","year" = "Year")) %>%
+    filter(., !is.na(`Gross national income per capital`))
+```
+
+### Make a two polished  and informative graphs, one relating income to maternal mortality and the other relating income to percentage attended births
+```{r}
+ggplot(data = subset(Countries, year == "1990"), aes(`Gross national income per capital`)) +
+  geom_point(alpha = 0.5, aes(y = `Maternal mortality ratio lower_bound`), colour = "blue") + 
+  geom_point(alpha = 0.5, aes(y= `Maternal mortality ratio upper_bound` ), colour = "red")
+
+ggplot(data = subset(Countries, year == "2000"), aes(`Gross national income per capital`)) +
+  geom_point(alpha = 0.5, aes(y = `Maternal mortality ratio lower_bound`), colour = "blue") +
+  geom_point(alpha = 0.5, aes(y= `Maternal mortality ratio upper_bound` ), colour = "green")
+
+
+```
